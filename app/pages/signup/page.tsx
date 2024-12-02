@@ -4,7 +4,7 @@ import Image from "next/image";
 import { Button } from "@nextui-org/button";
 import { Input } from "@nextui-org/input";
 import { useForm } from "react-hook-form";
-import { schema, TSignUpSchema } from "./lib/zodSchema";
+import { SignUpSchema, TSignUpSchema } from "../../lib/zodSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -12,14 +12,14 @@ import { useRouter } from "next/navigation";
 
 export default function Signup() {
   const router = useRouter();
-  
+
   const {
     register,
     setError,
     handleSubmit,
     formState: { errors },
   } = useForm<TSignUpSchema>({
-    resolver: zodResolver(schema),
+    resolver: zodResolver(SignUpSchema),
   });
 
   const onSubmit = async (data: TSignUpSchema) => {
@@ -46,7 +46,8 @@ export default function Signup() {
           alt="background"
         />
         <div className="absolute flex space-y-5 flex-col justify-center items-center top-0 right-0 left-0 bottom-0 bg-blackOverlay">
-          <div className="w-80">
+          <div className="w-80 bg-myBrown2 p-5 rounded-lg">
+            <p className="text-white text-center my-3 text-3xl font-bold">Sign Up</p>
             <form
               onSubmit={handleSubmit(onSubmit)}
               className="flex flex-col space-y-2"
@@ -94,7 +95,7 @@ export default function Signup() {
                 </p>
               )}
               <div className="flex justify-center items-center">
-                <Button type="submit" className="bg-myGreen1 text-white">
+                <Button type="submit" className="bg-myBrown1 text-white">
                   Sign Up
                 </Button>
               </div>

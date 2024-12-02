@@ -2,6 +2,9 @@ import "@/styles/globals.css";
 import { Metadata } from "next";
 import { Providers } from "./providers";
 import { siteConfig } from "@/config/site";
+import ClientSessionProvider from "./ClientSessionProvider";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata: Metadata = {
   title: {
@@ -23,7 +26,12 @@ export default function RootLayout({
     <html suppressHydrationWarning lang="en">
       <head />
       <body>
-        <Providers>{children}</Providers>
+        <ClientSessionProvider>
+          <Providers>
+            <ToastContainer />
+            {children}
+          </Providers>
+        </ClientSessionProvider>
       </body>
     </html>
   );
